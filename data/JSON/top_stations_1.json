@@ -1,0 +1,40 @@
+var topstations_json = {
+  "type": "FeatureCollection",
+
+"features": [
+  {
+    "": 0,
+    "Start Station Name": "West St & Chambers St",
+    "Female Users": 2778,
+    "Start Station ID": 426,
+    "geometry" : { "type" : "Point", "coordinates" : [ -74.01322069, 40.71754834 ]}
+  }
+  ,
+  {
+    "": 1,
+    "Start Station Name": "Broadway & E 22 St",
+    "Female Users": 2714,
+    "Start Station ID": 402,
+    "geometry" : {"type": "Point", "coordinates": [ -73.98955109000001, 40.74034320000001]}
+  }
+  ,
+  {
+    "": 2,
+    "Start Station Name": "W 21 St & 6 Ave",
+    "Female Users": 2604,
+    "Start Station ID": 435,
+    "geometry" : { "type" : "Point", "coordinates": [-73.99415556, 40.74173969]}
+  }
+  ,
+  {
+    "": 3,
+    "Start Station Name": "E 17 St & Broadway",
+    "Female Users": 2444,
+    "Start Station ID": 497,
+    "geometry" : { "type": "Point", "coordinates" : [-73.99009296, 40.73704984]}
+  }
+]
+}
+
+
+

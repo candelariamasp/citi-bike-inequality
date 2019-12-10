@@ -1,0 +1,38 @@
+var topstations_json = {
+"type": "FeatureCollection",
+                                                                                
+"features": [
+{ "type": "Feature", "id": 1, "properties": { "Start_Sation_Name": "West St & Chambers St", "Female_Users": 2778, "Start_Station_ID": 426 }, 
+"geometry": { "type": "Point", "coordinates": [ -74.01322069 , 40.71754834 ] } }
+,
+{ "type": "Feature", "id": 2, "properties": { "Start_Sation_Name": "Broadway & E 22 St", "Female_Users": 2714, "Start_Station_ID": 402 }, 
+"geometry": { "type": "Point", "coordinates": [ -73.98955109000001, 40.74034320000001 ] } }
+,
+{ "type": "Feature", "id": 3, "properties": { "Start_Sation_Name": "W 21 St & 6 Ave", "Female_Users": 2604, "Start_Station_ID": 435 }, 
+"geometry": { "type": "Point", "coordinates": [ -73.99415556, 40.74173969 ] } }
+,
+{ "type": "Feature", "id": 4, "properties": { "Start_Sation_Name": "E 17 St & Broadway", "Female_Users": 2444, "Start_Station_ID": 497 }, 
+"geometry": { "type": "Point", "coordinates": [ -73.99009296, 40.73704984 ] } }
+,
+{ "type": "Feature", "id": 5, "properties": { "Start_Sation_Name": "Pershing Square North", "Female_Users": 1991, "Start_Station_ID": 519 }, 
+"geometry": { "type": "Point", "coordinates": [ -73.97770600000003, 40.751873 ] } }
+,
+{ "type": "Feature", "id": 6, "properties": { "Start_Sation_Name": "Carmine St & 6 Ave", "Female_Users": 1936, "Start_Station_ID": 368 }, 
+"geometry": { "type": "Point", "coordinates": [ -74.00214988, 40.73038599 ] } }
+,
+{ "type": "Feature", "id": 7, "properties": { "Start_Sation_Name": "W 20 St & 11 Ave", "Female_Users": 1914, "Start_Station_ID": 459 }, 
+"geometry": { "type": "Point", "coordinates": [ -74.007756, 40.746745 ] } }
+,
+{ "type": "Feature", "id": 8, "properties": { "Start_Sation_Name": "Greenwich Ave & 8 Ave", "Female_Users": 1701, "Start_Station_ID": 284 }, 
+"geometry": { "type": "Point", "coordinates": [ -74.0026376103, 40.7390169121 ] } }
+,
+{ "type": "Feature", "id": 9, "properties": { "Start_Sation_Name": "E 7 St & Avenue A", "Female_Users": 1690, "Start_Station_ID": 432 }, 
+"geometry": { "type": "Point", "coordinates": [ -73.98379855, 40.72621788 ] } }
+,
+{ "type": "Feature", "id": 10, "properties": { "Start_Sation_Name": "Cleveland Pl & Spring St", "Female_Users": 1644, "Start_Station_ID": 151 }, 
+"geometry": { "type": "Point", "coordinates": [ -73.99724900722505, 40.72210378668603 ] } }
+]
+}
+
+
+

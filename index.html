@@ -1,0 +1,365 @@
+<!-- Code from d3-graph-gallery.com -->
+<!DOCTYPE html>
+<html lang="en"> 
+  <head>
+    <meta charset="utf-8">
+    <title>Assignment 5</title>
+    <link rel="stylesheet" href="HTML.css">
+
+    <style>
+      .station {
+          fill: #2B80C3;
+      }
+      .hover {
+          fill: yellow;   
+      }
+      .male_station {
+          fill: #ff9933;
+      }
+
+    </style>
+
+    <!-- Load d3.js -->
+    <script src="https://d3js.org/d3.v4.min.js" charset="utf-8"></script>
+    <script src="data/JSON/NYC_Neighborhoods.json"></script>
+    <script src="data/JSON/top_stations_2.json"></script>
+    <script src="data/JSON/male_top_stations_2.json"></script>
+
+  </head>
+
+  <body>
+      <h1>Citibike inequality in NYC</h1>
+      <p>Candelaria Mas Pohmajevic (cm3919)</p>
+      
+      <p>Biking is a great mean of transportation either for people's health and for the environment. 
+         Citi Bike provides a great service for Newyorkers, but I'm about to contest that. 
+         The Citibike system offers eco friendly transportation mainly to men and affluent populations. 
+         In this story I'm focusing on revealing the gender gap present in the the system and targetting some possible initiatives that could be promoted by the city in order to reduce the gender gap.
+         The data I used come from <a href="https://s3.amazonaws.com/tripdata/index.html" target="_blank" target="_blank">Citi Bike System Data</a></h3>. I decided to focus on the May 2017 dataset.
+      </p>
+
+      <h4>1. NYC female population underrepresented in Citibike</h4>
+      
+      <!-- Add 2 buttons-->
+      <div>
+        <button onclick="update(data1)">NYC Population 2017</button>
+        <button onclick="update(data2)">Citibike Users May 2017</button>
+      </div>
+
+      <!-- Create a div where the graph will take place -->
+      <div>
+        <div id="my_dataviz" style="width: 50%; float: left;"></div>
+        <script>
+          // create 2 data_set
+          var data1 = [
+            {group: "Female", value: 4510159},
+            {group: "Male", value: 4112539},
+          ];
+
+          var data2 = [
+            {group: "Female", value: 339408},
+            {group: "Male", value: 1006280},
+          ];
+
+          // set the dimensions and margins of the graph
+          var margin = {top: 30, right: 30, bottom: 70, left: 60},
+              width = 460 - margin.left - margin.right,
+              height = 400 - margin.top - margin.bottom;
+
+          // append the svg object to the body of the page
+          var svg = d3.select("#my_dataviz")
+            .append("svg")
+              .attr("width", width + margin.left + margin.right)
+              .attr("height", height + margin.top + margin.bottom)
+            .append("g")
+              .attr("transform",
+                    "translate(" + margin.left + "," + margin.top + ")");
+
+          // X axis
+          var x = d3.scaleBand()
+            .range([ 0, width ])
+            .domain(data1.map(function(d) { return d.group; }))
+            .padding(0.2);
+
+          svg.append("g")
+            .attr("transform", "translate(0," + height + ")")
+            .call(d3.axisBottom(x))
+
+          // Add Y axis
+          var y = d3.scaleLinear()
+            .domain([0, 4600000])
+            .range([ height, 0]);
+          svg.append("g")
+            .attr("class", "myYaxis")
+            .call(d3.axisLeft(y));
+
+          // A function that create / update the plot for a given variable:
+          function update(data) {
+
+            var u = svg.selectAll("rect")
+              .data(data)
+
+            u
+              .enter()
+              .append("rect")
+              .merge(u)
+              .transition()
+              .duration(1000)
+                .attr("x", function(d) { return x(d.group); })
+                .attr("y", function(d) { return y(d.value); })
+                .attr("width", x.bandwidth())
+                .attr("height", function(d) { return height - y(d.value); })
+                .attr("fill", "#2B80C3")
+          }
+
+          // Initialize the plot with the first dataset
+          update(data1);
+      
+        </script>
+        
+        <img src="img/citibike_facts-01.png" style="width: 50%">
+      </div>
+
+      <h4 style="clear: both;">2. 10 Most used stations by females in May 2017 (>1600 users)</h4>
+      <h3>Amount of female users: <span id="amount-female"></span></h3>
+      
+      <div id="my_map"></div>
+      <script>
+        //NYC Map
+        // Width and Height of the whole visualization
+        var width2 = 700;
+        var height2 = 580;
+
+        // Create SVG
+        var svg2 = d3.select( "#my_map" )
+            .append( "svg" )
+            .attr( "width", width2 )
+            .attr( "height", height2 );
+
+        // Append empty placeholder g element to the SVG
+        // g will contain geometry elements
+        var g = svg2.append( "g" );
+
+        // Set Projection Parameters
+        var albersProjection = d3.geoAlbers()
+            .scale( 150000 )
+            .rotate( [74.006,0] )
+            .center( [0, 40.7128] )
+            .translate( [width2/2,height2/2] );
+
+        // Create GeoPath function that uses built-in D3 functionality to turn
+        // lat/lon coordinates into screen coordinates
+        var geoPath = d3.geoPath()
+            .projection( albersProjection );
+
+        // Classic D3... Select non-existent elements, bind the data, append the elements, and apply attributes
+        g.selectAll( "path" )
+            .data( neighborhoods_json.features )
+            .enter()
+            .append( "path" )
+            .attr( "fill", "#d9d9d9" )
+            .attr( "stroke", "#ffffff")
+            .attr( "d", geoPath );
+
+        var topstations = svg2.append( "g" );
+
+        topstations.selectAll( "path" )
+          .data( topstations_json.features )
+          .enter()
+          .append( "path" )
+          .attr( "fill", "#2B80C3" )
+          .attr( "stroke", "#000000" )
+          .attr( "d", geoPath )
+          .attr( "class", "station")
+          .on("mouseover", function(d){
+            d3.select("#amount-female").text(d.properties.Female_Users);
+            d3.select(this).attr("class", "station hover");
+          })
+          .on("mouseout", function(d){
+            d3.select("#amount-female").text("");
+            d3.select(this).attr("class", "station");
+          });
+      </script>
+
+      <h4>10 Most used stations by males in May 2017 (>5700 users)</h4>
+      <h3>Amount of male users: <!-- This is a label--> <span id="amount-male"></span></h3>
+
+      <div id="male_map"></div>
+
+      <script>
+        //NYC Map
+        // Width and Height of the whole visualization
+        var width3 = 700;
+        var height3 = 580;
+
+        // Create SVG
+        var svg3 = d3.select( "#male_map" )
+            .append( "svg" )
+            .attr( "width", width3 )
+            .attr( "height", height3 );
+
+        // Append empty placeholder g element to the SVG
+        // g will contain geometry elements
+        var g = svg3.append( "g" );
+
+        // Set Projection Parameters
+        var albersProjection = d3.geoAlbers()
+            .scale( 150000 )
+            .rotate( [74.006,0] )
+            .center( [0, 40.7128] )
+            .translate( [width3/2,height3/2] );
+
+        // Create GeoPath function that uses built-in D3 functionality to turn
+        // lat/lon coordinates into screen coordinates
+        var geoPath = d3.geoPath()
+            .projection( albersProjection );
+
+        // Classic D3... Select non-existent elements, bind the data, append the elements, and apply attributes
+        g.selectAll( "path" )
+            .data( neighborhoods_json.features )
+            .enter()
+            .append( "path" )
+            .attr( "fill", "#d9d9d9" )
+            .attr( "stroke", "#ffffff")
+            .attr( "d", geoPath );
+
+        var maletopstations = svg3.append( "g" );
+
+        maletopstations.selectAll( "path" )
+          .data( maletopstations_json.features )
+          .enter()
+          .append( "path" )
+          .attr( "fill", "#ff9933" )
+          .attr( "stroke", "#000000" )
+          .attr( "d", geoPath )
+          .attr( "class", "male_station")
+          .on("mouseover", function(d){
+            d3.select("#amount-male").text(d.properties.Male_Users);
+            d3.select(this).attr("class", "station hover");
+          })
+          .on("mouseout", function(d){
+            d3.select("#amount-male").text("");
+            d3.select(this).attr("class", "male_station");
+          });
+        </script>
+
+
+      <h4>Riders trends per gender in 10 most used stations</h4>
+      <p> Source: <a href="https://www.d3-graph-gallery.com/graph/connectedscatter_select.html" target="_blank">Connected Scatter Plot</a></p>
+      
+        <!-- Initialize a select button -->
+        <select id="selectButton"></select>
+
+        <!-- Create a div where the graph will take place -->
+        <div id="my_graph"></div>
+
+        <!-- Color Scale -->
+        <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+
+        <script>
+
+          // set the dimensions and margins of the graph
+          var margin4 = {top: 30, right: 30, bottom: 70, left: 60},
+              width4 = 550 - margin4.left - margin4.right,
+              height4 = 800 - margin4.top - margin4.bottom;
+          
+          // append the svg object to the body of the page
+          var svg4 = d3.select("#my_graph")
+            .append("svg")
+              .attr("width", width4 + margin4.left + margin4.right)
+              .attr("height", height4 + margin4.top + margin4.bottom)
+            .append("g")
+              .attr("transform",
+                    "translate(" + margin4.left + "," + margin4.top + ")");
+          
+          //Read the data
+          d3.csv("data/csv/top_10_time_trends.csv", function(data) {
+          
+              // List of groups (here I have one group per column)
+              var allGroup = ["f_users", "m_users"]
+          
+              // add the options to the button
+              d3.select("#selectButton")
+                .selectAll('myOptions')
+                .data(allGroup)
+                .enter()
+                .append('option')
+                .text(function (d) { return d; }) // text showed in the menu
+                .attr("value", function (d) { return d; }) // corresponding value returned by the button
+          
+              // Add X axis --> it is a date format
+              var x = d3.scaleLinear()
+                .domain([0,24])
+                .range([ 0, width4 ]);
+              svg4.append("g")
+                .attr("transform", "translate(0," + height4 + ")")
+                .call(d3.axisBottom(x));
+          
+              // Add Y axis
+              var y = d3.scaleLinear()
+                .domain( [0,11000])
+                .range([ height4, 0 ]);
+              svg4.append("g")
+                .call(d3.axisLeft(y));
+          
+              // Initialize line with group a
+              var line = svg4
+                .append('g')
+                .append("path")
+                  .datum(data)
+                  .attr("d", d3.line()
+                    .x(function(d) { return x(+d.Time) })
+                    .y(function(d) { return y(+d.f_users) })
+                  )
+                  .attr("stroke", "#575656")
+                  .style("stroke-width", 4)
+                  .style("fill", "none")
+          
+              // Initialize dots with group a
+              var dot = svg4
+                .selectAll('circle')
+                .data(data)
+                .enter()
+                .append('circle')
+                  .attr("cx", function(d) { return x(+d.Time) })
+                  .attr("cy", function(d) { return y(+d.f_users) })
+                  .attr("r", 7)
+                  .style("fill", "#2B80C3")
+                  .style("stroke-width", 1)
+                  .style("stroke", "#575656")
+          
+          
+              // A function that update the chart
+              function update(selectedGroup) {
+          
+                // Create new data with the selection?
+                var dataFilter = data.map(function(d){return {Time: d.Time, value:d[selectedGroup]} })
+          
+                // Give these new data to update line
+                line
+                    .datum(dataFilter)
+                    .transition()
+                    .duration(1000)
+                    .attr("d", d3.line()
+                      .x(function(d) { return x(+d.Time) })
+                      .y(function(d) { return y(+d.value) })
+                    )
+                dot
+                  .data(dataFilter)
+                  .transition()
+                  .duration(1000)
+                    .attr("cx", function(d) { return x(+d.Time) })
+                    .attr("cy", function(d) { return y(+d.value) })
+              }
+          
+              // When the button is changed, run the updateChart function
+              d3.select("#selectButton").on("change", function(d) {
+                  // recover the option that has been chosen
+                  var selectedOption = d3.select(this).property("value")
+                  // run the updateChart function with this selected option
+                  update(selectedOption)
+              })
+          
+          })
+          </script>
+            

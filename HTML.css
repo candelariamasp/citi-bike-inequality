@@ -1,0 +1,80 @@
+body {
+    font-family: "Helvetica Neue", "Arial", "sans-serif"
+}
+
+h1 {
+    font-weight: bold;
+    color: #000000;
+    font-size: 36px;
+    text-align: left;
+}
+
+h3 { 
+    font-size: 16px; 
+    font-style: thin; 
+    font-variant: condensed; 
+    font-weight: 400; 
+    line-height: 26.4px;
+    text-align: left;
+    color: rgb(87, 86, 86)
+}
+
+h4 {
+    font-size: 20px; 
+    font-style: normal; 
+    font-variant: condensed; 
+    font-weight: 400; 
+    line-height: 26.4px;
+    text-align: left;
+    color: rgb(36, 36, 36)
+}
+
+p {
+    font-size: 16px; 
+    font-style: thin; 
+    font-variant: condensed; 
+    font-weight: 300; 
+    line-height: 26.4px;
+    text-align: left;
+    color: rgb(82, 82, 82)
+}
+
+h2 {
+    font-size: 20px; 
+    font-style: normal; 
+    font-variant: condensed; 
+    font-weight: 400; 
+    line-height: 26.4px;
+    text-align: left;
+    color: rgb(243, 7, 7)
+}
+
+h5 {
+    font-size: 16px; 
+    font-style: thin; 
+    font-variant: condensed; 
+    font-weight: 300; 
+    line-height: 26.4px;
+    text-align: left;
+    color: rgb(82, 82, 82)
+}
+
+ul {
+    font-size: 16px; 
+    font-style: thin; 
+    font-variant: condensed; 
+    font-weight: 300; 
+    line-height: 26.4px;
+    text-align: left;
+    color: rgb(82, 82, 82)
+}
+
+ol {
+    font-size: 16px; 
+    font-style: thin; 
+    font-variant: condensed; 
+    font-weight: 300; 
+    line-height: 26.4px;
+    text-align: left;
+    color: rgb(82, 82, 82)
+}

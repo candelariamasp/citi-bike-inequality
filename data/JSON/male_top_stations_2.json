@@ -1,0 +1,38 @@
+var maletopstations_json = {
+"type": "FeatureCollection",
+                                                                                
+"features": [
+{ "type": "Feature", "id": 1, "properties": { "Start_Sation_Name": "Pershing Square North", "Male_Users": 12747, "Start_Station_ID": 519 }, 
+"geometry": { "type": "Point", "coordinates": [ -73.97771, 40.75187 ] } }
+,
+{ "type": "Feature", "id": 2, "properties": { "Start_Sation_Name": "Broadway & E 22 St", "Male_Users": 8596, "Start_Station_ID": 402 }, 
+"geometry": { "type": "Point", "coordinates": [ -73.98955, 40.74034 ] } }
+,
+{ "type": "Feature", "id": 3, "properties": { "Start_Sation_Name": "8 Ave & W 31 St", "Male_Users": 7619, "Start_Station_ID": 3255 }, 
+"geometry": { "type": "Point", "coordinates": [ -73.99468, 40.75059 ] } }
+,
+{ "type": "Feature", "id": 4, "properties": { "Start_Sation_Name": "8 Ave & W 33 St	", "Male_Users": 7530, "Start_Station_ID": 490 }, 
+"geometry": { "type": "Point", "coordinates": [ -73.99393, 40.75155] } }
+,
+{ "type": "Feature", "id": 5, "properties": { "Start_Sation_Name": "E 17 St & Broadway", "Male_Users": 7253, "Start_Station_ID": 497 }, 
+"geometry": { "type": "Point", "coordinates": [-73.99009, 40.73705] } }
+,
+{ "type": "Feature", "id": 6, "properties": { "Start_Sation_Name": "W 21 St & 6 Ave", "Male_Users": 6945, "Start_Station_ID": 435 }, 
+"geometry": { "type": "Point", "coordinates": [-73.99416, 40.74174 ] } }
+,
+{ "type": "Feature", "id": 7, "properties": { "Start_Sation_Name": "W 41 St & 8 Ave", "Male_Users": 6540, "Start_Station_ID": 477 }, 
+"geometry": { "type": "Point", "coordinates": [ -73.99003, 40.75641] } }
+,
+{ "type": "Feature", "id": 8, "properties": { "Start_Sation_Name": "E 47 St & Park Ave", "Male_Users": 6205, "Start_Station_ID": 359 }, 
+"geometry": { "type": "Point", "coordinates": [ -73.97499, 40.75510 ] } }
+,
+{ "type": "Feature", "id": 9, "properties": { "Start_Sation_Name": "W 31 St & 7 Ave", "Male_Users": 5884, "Start_Station_ID": 379 }, 
+"geometry": { "type": "Point", "coordinates": [ -73.99160, 40.74916] } }
+,
+{ "type": "Feature", "id": 10, "properties": { "Start_Sation_Name": "West St & Chambers St", "Male_Users": 5741, "Start_Station_ID": 426 }, 
+"geometry": { "type": "Point", "coordinates": [ -74.01322, 40.71755 ] } }
+]
+}
+
+
+
